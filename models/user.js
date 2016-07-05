@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 let userSchema = new mongoose.Schema ({
-    username: {type: String}
+    username: {type: String},
     password: {type: String}
 });
 
@@ -39,15 +39,19 @@ userSchema.methods.generateToken = function() {
 };
 
 userSchema.statics.register = function (userObj, cb) {
-  if(err || user) return cb(err || {error: 'Username already taken'});
 
-  bcrypt.hash(userObj.password, 12, (err, hash) => {
-    if(err) return cb(err);
+  this.findOne({username: userObj.username}, (err, user) => {
 
-    userObj.password = hash;
+    if(err || user) return cb(err || {error: 'Username already taken'});
+    bcrypt.hash(userObj.password, 12, (err, hash) => {
+      if(err) return cb(err);
 
-    this.create(userObj, err => {
-      cb(err);
+      userObj.password = hash;
+
+      this.create(userObj, err => {
+        cb(err);
+
+      })
     })
   })
 }
@@ -72,4 +76,6 @@ userSchema.statics.authenticate = function(userObj , cb) {
     });
 };
 
-var User = mongoose.model('User', userSchema)
+var User = mongoose.model('User', userSchema);
+
+module.exports = User;

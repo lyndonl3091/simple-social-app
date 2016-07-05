@@ -10,6 +10,7 @@ let router = express.Router();
 router.get('/', (req, res) => {
   User.find({}, (err, users) => {
     if(err) return res.status(400).send(err);
+    res.send(users)
   })
 })
 
@@ -19,7 +20,7 @@ router.get('/profile', User.authMiddleware, (req, res) => {
 
 router.post('/register', (req, res) => {
   User.register(req.body, err => {
-    res.status(err ? 400:200).send(err);
+    res.status(err ? 400 : 200).send(err);
   })
 });
 
@@ -34,6 +35,8 @@ router.post('/login', (req, res) => {
   })
 })
 
-res.post('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   res.clearCookie('authtoken').send();
 });
+
+module.exports = router;
