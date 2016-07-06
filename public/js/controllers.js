@@ -8,7 +8,7 @@ app.controller('mainCtrl', function($scope, User, $state) {
   $scope.logOut = () => {
     User.logout()
     .then(
-      $state.go('home')
+      $state.go('login')
     )
   }
 });
