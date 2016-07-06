@@ -5,7 +5,7 @@ var app = angular.module('myApp');
 app.service('User', function($http, $rootScope, $cookies, $q, TOKENNAME) {
 
     this.getProfile = () => {
-      return $http.get('/apu/user/profile')
+      return $http.get('/api/users/profile')
     }
 
     this.readToken = () => {
@@ -18,6 +18,7 @@ app.service('User', function($http, $rootScope, $cookies, $q, TOKENNAME) {
     };
 
     this.register = userObj => {
+      console.log('userObj', userObj);
       return $http.post('/api/users/register', userObj);
     }
 
@@ -25,8 +26,20 @@ app.service('User', function($http, $rootScope, $cookies, $q, TOKENNAME) {
       return $http.post('/api/users/login', userObj)
       .then(res => {
         $rootScope.currentUser = res.data;
+        console.log('rootScope', $rootScope.currentUser);
         return $q.resolve(res)
       });
+    }
+
+    this.editProfile = userObj=> {
+      let id = $rootScope.currentUser._id;
+      console.log(id);
+      return $http.put(`/api/users/${id}`, userObj)
+      .then(res => {
+        $rootScope.currentUser = res.data;
+        return $q.resolve(res)
+      })
+
     }
 
     this.logout= () => {
@@ -35,4 +48,5 @@ app.service('User', function($http, $rootScope, $cookies, $q, TOKENNAME) {
 
       return $q.resolve();
     }
+
 })

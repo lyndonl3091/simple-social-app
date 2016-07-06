@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 let userSchema = new mongoose.Schema ({
     username: {type: String},
     password: {type: String},
+    name: {type: String},
     age: {type: Number},
     hometown: {type: String},
 });
@@ -41,10 +42,11 @@ userSchema.methods.generateToken = function() {
 };
 
 userSchema.statics.register = function (userObj, cb) {
-
+  console.log('userSchema register:', userObj);
   this.findOne({username: userObj.username}, (err, user) => {
 
     if(err || user) return cb(err || {error: 'Username already taken'});
+
     bcrypt.hash(userObj.password, 12, (err, hash) => {
       if(err) return cb(err);
 
@@ -68,7 +70,7 @@ userSchema.statics.authenticate = function(userObj , cb) {
         return cb({error: 'Invalid username or password.'});
       }
 
-      bcrypt.comapare(userObj.password, user.password, (err, isGood) => {
+      bcrypt.compare(userObj.password, user.password, (err, isGood) => {
         if(err || !isGood) return cb(err || {error: 'Invalid username or password.'});
 
         user.password = null;

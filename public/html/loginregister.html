@@ -1,5 +1,3 @@
-<h1>loginregister</h1>
-
 
 <div class="container">
   <div class="row">
@@ -7,15 +5,15 @@
       <form ng-submit="userRegister()">
           <div class="form-group">
             <label class="control-label" for="focusedInput">New users:</label>
-            <input class="form-control" id="focusedInput" type="text" placeholder="Username" ng-model='user.username'><br>
+            <input class="form-control" id="focusedInput" type="text" placeholder="Username" ng-model='newUser.username'><br>
             <label class="control-label" for="focusedInput"></label>
-            <input class="form-control" id="focusedInput" type="password" placeholder="Password" ng-model='user.password'>
+            <input class="form-control" id="focusedInput" type="password" placeholder="Password" ng-model='newUser.password'>
             <label class="control-label" for="focusedInput"></label>
-            <input class="form-control" id="focusedInput" type="password" placeholder="Confirm Password" ng-model='user.password2'>
+            <input class="form-control" id="focusedInput" type="password" placeholder="Confirm Password" ng-model='newUser.password2'>
           </div>
 
-          <button type="button" class="btn btn-default btn-xs" ng-click="removeProperty()">Cancel</button>
-          <button class="btn btn-success btn-xs">Register</button>
+          <button type="button" class="btn btn-default" ng-click="removeProperty()">Cancel</button>
+          <button class="btn btn-success">Register</button>
 
 
         </form>
@@ -25,12 +23,12 @@
       <form ng-submit="userLogin()">
        <div class="form-group">
          <label class="control-label" for="focusedInput">Existing:</label>
-         <input class="form-control" id="focusedInput" type="text" placeholder="Username" ng-model='userExisting.username'><br>
+         <input class="form-control" id="focusedInput" type="text" placeholder="Username" ng-model='user.username'><br>
          <label class="control-label" for="focusedInput"></label>
-         <input class="form-control" id="focusedInput" type="password" placeholder="Password" ng-model='userExisting.password'>
+         <input class="form-control" id="focusedInput" type="password" placeholder="Password" ng-model='user.password'>
        </div>
-     <button type="button" class="btn btn-default btn-xs" ng-click="removeProperty()">Cancel</button>
-     <button class="btn btn-success btn-xs">Login</button>
+     <button type="button" class="btn btn-default" ng-click="removeProperty()">Cancel</button>
+     <button class="btn btn-success">Login</button>
 
        </form>
     </div>

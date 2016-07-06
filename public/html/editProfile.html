@@ -1,0 +1,26 @@
+<h1>Edit Profile</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form ng-submit="editProfile()">
+          <div class="form-group">
+            <label class="control-label" for="focusedInput">New users:</label>
+            <input class="form-control" id="focusedInput" type="text" placeholder="Username" ng-model='user.username'><br>
+            <label class="control-label" for="focusedInput"></label>
+            <input class="form-control" id="focusedInput" type="text" placeholder="Password" ng-model='user.password'>
+            <label class="control-label" for="focusedInput"></label>
+            <input class="form-control" id="focusedInput" type="text" placeholder="Name" ng-model='user.name'>
+            <label class="control-label" for="focusedInput"></label>
+            <input class="form-control" id="focusedInput" type="text" placeholder="Age" ng-model='user.age'>
+            <label class="control-label" for="focusedInput"></label>
+            <input class="form-control" id="focusedInput" type="text" placeholder="Hometown" ng-model='user.hometown'>
+          </div>
+
+          <button type="button" class="btn btn-default" ng-click="removeProperty()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+          <button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span></button>
+
+
+        </form>
+    </div>
+  </div>

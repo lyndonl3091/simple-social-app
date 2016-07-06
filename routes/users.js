@@ -15,17 +15,19 @@ router.get('/', (req, res) => {
 })
 
 router.get('/profile', User.authMiddleware, (req, res) => {
+  console.log('req', req);
   res.send(req.user);
 })
 
 router.post('/register', (req, res) => {
+  console.log('req.body:', req.body);
   User.register(req.body, err => {
     res.status(err ? 400 : 200).send(err);
   })
 });
 
 router.post('/login', (req, res) => {
-
+console.log('login req.body', req.body);
   User.authenticate(req.body, (err, user) => {
     if(err) return res.status(400).send(err);
 
@@ -44,5 +46,14 @@ router.delete('/:id', (req, res) => {
     res.status(err ? 400 : 200).send(err);
   })
 })
+
+router.route('/:id')
+  .put( (req, res) => {
+    console.log(req.body);
+    User.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, newUser) => {
+      res.status(err? 400:200).send(err || newUser);
+    })
+
+  })
 
 module.exports = router;
