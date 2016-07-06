@@ -51,9 +51,13 @@ app.controller('loginRegisterCtrl', function($scope, User, $state) {
 
 })
 
-app.controller('profileCtrl', function($rootScope) {
+app.controller('profileCtrl', function($scope, $rootScope) {
   console.log('profileCtrl!');
   console.log($rootScope.currentUser);
+
+  $scope.deleteAccount = () => {
+    console.log('Delete!');
+  }
 })
 
 app.controller('editProfileCtrl', function ($scope, User, $state, $rootScope) {
