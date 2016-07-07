@@ -12,6 +12,7 @@ let userSchema = new mongoose.Schema ({
     name: {type: String},
     age: {type: Number},
     hometown: {type: String},
+    picture: {type: String}
 });
 
 userSchema.statics.authMiddleware = function(req, res, next) {
