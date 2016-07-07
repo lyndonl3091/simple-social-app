@@ -72,3 +72,14 @@ app.controller('editProfileCtrl', function ($scope, User, $state, $rootScope) {
     })
   }
 })
+
+app.controller('usersCtrl', function($scope, User) {
+
+  User.getAll()
+  .then(res => {
+    $scope.users = res.data;
+  })
+  .catch(err => {
+    console.log('err:', err);
+  })
+})

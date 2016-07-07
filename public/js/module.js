@@ -23,6 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
           })
     .state('edit', {url: '/profile/edit', templateUrl: '/html/editProfile.html', controller: 'editProfileCtrl'})
+    .state('users', {url: '/users', templateUrl: '/html/users.html', controller: 'usersCtrl'})
 
   $urlRouterProvider.otherwise('/');
 });

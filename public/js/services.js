@@ -4,6 +4,8 @@ var app = angular.module('myApp');
 
 app.service('User', function($http, $rootScope, $cookies, $q, TOKENNAME) {
 
+    this.getAll = () => $http.get('/api/users')
+    
     this.getProfile = () => {
       return $http.get('/api/users/profile')
     }
